@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>루비 키위 - 자연이 선물한 붉은 보석</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --ruby: #E0115F;
+            --ruby-bright: #ff4d4d;
+            --kiwi: #8EE53F;
+            --dark: #1a1a1a;
+            --light: #fdfdfd;
+            --glass: rgba(255, 255, 255, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Stunning Hero Banner */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fff 0%, #fff0f5 50%, #f0fff4 100%);
+            overflow: hidden;
+            padding: 0 5%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(224, 17, 95, 0.05) 0%, transparent 70%);
+            animation: moveBg 15s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes moveBg {
+            0% { transform: translate(-10%, -10%); }
+            100% { transform: translate(10%, 10%); }
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1400px;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 650px;
+            padding: 3rem;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--ruby), var(--ruby-bright));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(224, 17, 95, 0.3);
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            color: var(--dark);
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, var(--ruby) 0%, #ff4d88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #555;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: var(--dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05) translateY(-5px);
+            background: var(--ruby);
+            box-shadow: 0 20px 40px rgba(224, 17, 95, 0.3);
+        }
+
+        .hero-img-box {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 600px;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.15));
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(3deg); }
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            background: var(--ruby);
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        .card.ruby-border {
+            border-top: 6px solid var(--ruby);
+        }
+
+        .card.kiwi-border {
+            border-top: 6px solid var(--kiwi);
+        }
+
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            color: #aaa;
+            font-weight: 500;
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--ruby);
+            margin-bottom: 25px;
+            background: rgba(0,0,0,0.02);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .icon-box {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(0,0,0,0.05);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--ruby);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--ruby);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--ruby);
+        }
+
+        .nav-cta {
+            padding: 10px 25px;
+            background: var(--dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--ruby);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(224, 17, 95, 0.2);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+        }
+
+        .lang-btn {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--ruby);
+            color: white;
+            border-color: var(--ruby);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+                gap: 30px;
+            }
+            .hero-text {
+                padding: 2.5rem;
+                max-width: 100%;
+            }
+            .hero-img {
+                max-width: 350px;
+            }
+            .nav-menu {
+                display: none; /* Hide for mobile simplification */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 120px 5%;
+            }
+            h1 {
+                font-size: 3rem;
+            }
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                margin: 60px auto;
+            }
+            .nav-logo {
+                font-size: 1.2rem;
+            }
+            .lang-switch {
+                margin-right: 10px;
+            }
+            .nav-cta {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">RUBY PREMIUM</a>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">홈페이지</a></li>
+                <li><a href="#explore">제품</a></li>
+                <li><a href="#mango">스토리</a></li>
+                <li><a href="#contact">문의</a></li>
+            </ul>
+            <div style="display: flex; align-items: center;">
+                <div class="lang-switch">
+                    <a href="index.html" class="lang-btn active">KR</a>
+                    <a href="en.html" class="lang-btn">EN</a>
+                </div>
+                <a href="#explore" class="nav-cta">구매하기</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <span class="badge">Nature's Masterpiece</span>
+                <h1>자연이 빚은<br><span>루비 키위</span></h1>
+                <p class="subtitle">반짝이는 붉은 속살, 입안 가득 터지는 극한의 달콤함. 프리미엄 과일의 새로운 기준을 만나보세요.</p>
+                <a href="#explore" class="cta-btn">자세히 보기</a>
+            </div>
+            <div class="hero-img-box">
+                <img src="C:/Users/uk584/.gemini/antigravity/brain/2accbd6b-6e4e-4c85-b684-496672be7b62/ruby_kiwi_hero_1777662434962.png" alt="Ruby Kiwi" class="hero-img">
+            </div>
+        </div>
+
+        <!-- Decorative elements -->
+        <div class="particle" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
+        <div class="particle" style="width: 150px; height: 150px; bottom: 10%; right: 5%; background: var(--kiwi);"></div>
+    </section>
+
+    <div class="container" id="explore">
+        <!-- Ruby Kiwi Section -->
+        <h2 style="text-align: center; margin-bottom: 50px; font-size: 2.5rem; font-weight: 800;">Ruby Kiwi Benefits</h2>
+        <section class="content-grid">
+            <div class="card ruby-border">
+                <div class="icon-box"><i class="fas fa-gem"></i></div>
+                <h2>독특한 붉은 빛</h2>
+                <p>루비 키위는 천연 항산화 성분인 안토시아닌이 풍부하여 중심부가 루비처럼 붉은 빛을 띱니다. 시각적으로도 아름다워 선물용으로 인기가 높습니다.</p>
+            </div>
+
+            <div class="card kiwi-border">
+                <div class="icon-box" style="color: var(--kiwi);"><i class="fas fa-honey-pot"></i></div>
+                <h2>놀라운 당도</h2>
+                <p>일반 키위보다 신맛이 적고 당도가 매우 높습니다. 입안 가득 퍼지는 진한 달콤함과 부드러운 식감이 특징입니다.</p>
+            </div>
+
+            <div class="card ruby-border">
+                <div class="icon-box"><i class="fas fa-heartbeat"></i></div>
+                <h2>영양의 보고</h2>
+                <p>비타민 C 함유량이 매우 높으며, 식이섬유와 엽산 등 다양한 영양소가 응축되어 있어 건강 관리에도 탁월합니다.</p>
+            </div>
+        </section>
+
+        <!-- Ruby Mango Section -->
+        <div id="mango" style="margin-top: 150px;">
+            <h2 style="text-align: center; margin-bottom: 20px; font-size: 2.5rem; font-weight: 800; color: #ff8c00;">Premium Ruby Mango</h2>
+            <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem;">황금빛 속살과 루비빛 껍질, 망고의 여왕이라 불리는 루비 망고만의 특별한 가치를 경험하세요.</p>
+            
+            <div style="text-align: center; margin-bottom: 60px;">
+                <img src="C:/Users/uk584/.gemini/antigravity/brain/2accbd6b-6e4e-4c85-b684-496672be7b62/ruby_mango_detail_1777679057231.png" alt="Ruby Mango" style="width: 100%; max-width: 800px; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.15);">
+            </div>
+
+            <section class="content-grid">
+                <div class="card" style="border-top: 6px solid #ff4500;">
+                    <div class="icon-box" style="color: #ff4500;"><i class="fas fa-sun"></i></div>
+                    <h2>애플망고의 정점</h2>
+                    <p>잘 익은 사과처럼 붉은 빛을 띠는 껍질 속에 숨겨진 진한 황금빛 속살은 시각과 미각을 동시에 사로잡습니다.</p>
+                </div>
+
+                <div class="card" style="border-top: 6px solid #ff8c00;">
+                    <div class="icon-box" style="color: #ff8c00;"><i class="fas fa-tint"></i></div>
+                    <h2>실크 같은 식감</h2>
+                    <p>섬유질이 거의 없어 입안에 넣는 순간 사르르 녹아내리는 부드러움과 풍부한 과즙을 자랑합니다.</p>
+                </div>
+
+                <div class="card" style="border-top: 6px solid #ffd700;">
+                    <div class="icon-box" style="color: #ffd700;"><i class="fas fa-crown"></i></div>
+                    <h2>압도적 브릭스</h2>
+                    <p>평균 20 Brix 이상의 높은 당도로 설탕보다 달콤하고 진한 풍미가 입안 가득 오랫동안 여운을 남깁니다.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" style="margin-top: 150px; background: #fff; padding: 80px 40px; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.05);">
+            <h2 style="text-align: center; margin-bottom: 20px; font-size: 2.5rem; font-weight: 800;">Get In Touch</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 50px;">제품 문의 및 파트너십 관련 궁금한 점을 남겨주세요. 전문가가 곧 연락드리겠습니다.</p>
+            
+            <form style="max-width: 600px; margin: 0 auto;">
+                <div style="margin-bottom: 20px;">
+                    <input type="text" placeholder="성함" style="width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="email" placeholder="이메일 주소" style="width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem;">
+                </div>
+                <div style="margin-bottom: 30px;">
+                    <textarea placeholder="문의 내용" rows="5" style="width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem;"></textarea>
+                </div>
+                <button type="button" class="cta-btn" style="width: 100%; border: none; cursor: pointer;">문의하기</button>
+            </form>
+        </div>
+
+        <footer>
+            &copy; 2026 Ruby Premium Fruits. Crafted for Excellence.
+        </footer>
+    </div>
+
+</body>
+</html>
